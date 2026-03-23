@@ -1,138 +1,216 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
-const specs = [
-  { left: "1× 60W power adapter", right: "Wireless battery" },
-  { left: "128GB onboard storage", right: "Tap charging" },
-  { left: "3W speaker with spatial audio", right: "Voice volume control" },
-  { left: "OASIS emotion chip", right: "Pet-friendly materials" },
+const productImages = [
+  "/solaceseed.png",
+  "/product-1.png",
+  "/product-2.png",
+  "/product-3.png",
 ];
 
-const colorVariants = [
-  { name: "Obsidian", color: "#1a1a1a" },
-  { name: "Pearl", color: "#f5f5f0" },
-  { name: "Sage", color: "#8db88a" },
-  { name: "Clay", color: "#c4956a" },
+const specsLeft = [
+  { icon: "📺", label: "1.3–1.5 inch low-power OLED (240 × 240)" },
+  { icon: "❤️", label: "Summon button" },
+  { icon: "🎤", label: "2 MEMS mic array" },
+  { icon: "🔊", label: "3W loudspeaker" },
+];
+
+const specsRight = [
+  { icon: "🔋", label: "500mAh battery" },
+  { icon: "⚡", label: "Type-C Charging" },
+  { icon: "📶", label: "Side rocker – volume / long-press skip/recall last response" },
 ];
 
 export default function ProductSection() {
   const [qty, setQty] = useState(1);
-  const [selectedColor, setSelectedColor] = useState(0);
+  const [qtyOpen, setQtyOpen] = useState(false);
+  const [activeImage, setActiveImage] = useState(0);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setQtyOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <section className="bg-white py-24 px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left: product image */}
-        <div className="flex items-center justify-center bg-gray-50 rounded-3xl p-12">
-          <ProductRobotSVG color={colorVariants[selectedColor].color} />
+        <div
+          className="overflow-hidden rounded-[8px]"
+          style={{ backgroundColor: "#f8f8f8", minHeight: "400px" }}
+        >
+          <img
+            src={productImages[activeImage]}
+            alt="Solace Seed"
+            className="w-full h-full object-cover transition-opacity duration-200"
+          />
         </div>
 
         {/* Right: product details */}
-        <div className="flex flex-col gap-6">
-          {/* Title + badges */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
-              <h2 className="text-2xl font-semibold text-gray-900">Solace Seed</h2>
-              <span className="bg-black text-white text-xs font-semibold px-2 py-0.5 rounded-full">
-                {colorVariants[selectedColor].name}
-              </span>
-              <span className="border border-gray-300 text-gray-500 text-xs px-2 py-0.5 rounded-full">
-                new
-              </span>
-            </div>
+        <div className="flex flex-col gap-6 pt-4">
+          {/* Title + PRESALE badge */}
+          <div className="flex items-center gap-3">
+            <h2 className="font-normal text-black" style={{ fontSize: "30px", letterSpacing: "-0.3px" }}>
+              Solace Seed
+            </h2>
+            <span
+              className="text-white font-normal px-3 py-1 rounded-[5px]"
+              style={{ backgroundColor: "#313131", fontSize: "10px", letterSpacing: "-0.1px" }}
+            >
+              PRESALE
+            </span>
+          </div>
 
-            {/* Stars */}
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill="#1a1a1a">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
+          {/* Stars */}
+          <div className="flex gap-[5px]">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <svg key={s} width="17" height="17" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2l2.94 5.96L21 8.87l-4.5 4.39L17.59 20 12 17.27 6.41 20l1.09-6.74L3 8.87l6.06-.91L12 2z" />
+              </svg>
+            ))}
+          </div>
+
+          {/* Price */}
+          <div className="flex items-center gap-3">
+            <span
+              className="font-normal line-through"
+              style={{ fontSize: "14px", letterSpacing: "-0.14px", color: "rgba(0,0,0,0.5)" }}
+            >
+              $180.00
+            </span>
+            <span className="font-normal text-black" style={{ fontSize: "14px", letterSpacing: "-0.14px" }}>
+              $60.00
+            </span>
+          </div>
+
+          {/* Description */}
+          <p
+            className="font-normal leading-[1.6]"
+            style={{ fontSize: "15px", letterSpacing: "-0.15px", color: "rgba(0,0,0,0.5)", maxWidth: "641px" }}
+          >
+            Solace Seed is a pocket-sized wellbeing companion inspired by Solace&apos;s mascot. Tap its single button
+            and tone-aware AI offers micro‑coaching, mood journaling, and breathing cues. Wi‑Fi, Bluetooth, haptics,
+            and a speaker enable discreet support anywhere.
+          </p>
+
+          {/* Specs */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+            <div className="flex flex-col gap-3">
+              {specsLeft.map((s) => (
+                <div key={s.label} className="flex items-start gap-3">
+                  <span className="text-sm shrink-0 mt-0.5">{s.icon}</span>
+                  <span
+                    className="font-normal leading-[1.55]"
+                    style={{ fontSize: "13px", letterSpacing: "-0.13px", color: "rgba(0,0,0,0.8)" }}
+                  >
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col gap-3">
+              {specsRight.map((s) => (
+                <div key={s.label} className="flex items-start gap-3">
+                  <span className="text-sm shrink-0 mt-0.5">{s.icon}</span>
+                  <span
+                    className="font-normal leading-[1.55]"
+                    style={{ fontSize: "13px", letterSpacing: "-0.13px", color: "rgba(0,0,0,0.8)" }}
+                  >
+                    {s.label}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Specs checklist */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-            {specs.map((s) => (
-              <>
-                <div key={s.left} className="flex items-center gap-2">
-                  <span className="text-green-500 font-bold text-sm">✓</span>
-                  <span className="text-xs text-gray-600">{s.left}</span>
-                </div>
-                <div key={s.right} className="flex items-center gap-2">
-                  <span className="text-green-500 font-bold text-sm">✓</span>
-                  <span className="text-xs text-gray-600">{s.right}</span>
-                </div>
-              </>
-            ))}
-          </div>
-
-          {/* Color selector */}
+          {/* Product photo thumbnails */}
           <div className="flex gap-3">
-            {colorVariants.map((c, i) => (
+            {productImages.map((src, i) => (
               <button
-                key={c.name}
-                title={c.name}
-                onClick={() => setSelectedColor(i)}
-                className={`w-9 h-9 rounded-full border-2 transition-all ${
-                  selectedColor === i ? "border-black scale-110" : "border-gray-200"
-                }`}
-                style={{ backgroundColor: c.color }}
-              />
+                key={i}
+                onClick={() => setActiveImage(i)}
+                className="overflow-hidden rounded-[10px] transition-all duration-150"
+                style={{
+                  width: "112px",
+                  height: "129px",
+                  backgroundColor: "#f8f8f8",
+                  outline: activeImage === i ? "2px solid black" : "2px solid transparent",
+                  outlineOffset: "-2px",
+                }}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" />
+              </button>
             ))}
           </div>
 
-          {/* Qty + Add to cart */}
+          {/* Qty + Checkout */}
           <div className="flex items-center gap-4 mt-2">
-            <div className="flex items-center border border-gray-200 rounded-full overflow-hidden">
+            <div
+              ref={dropdownRef}
+              className="relative border border-[#e5e5e5] rounded-[10px]"
+              style={{ height: "55px", width: "107px" }}
+            >
               <button
-                onClick={() => setQty((q) => Math.max(1, q - 1))}
-                className="px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+                onClick={() => setQtyOpen((o) => !o)}
+                className="w-full h-full flex items-center justify-between px-3"
               >
-                −
+                <div className="flex flex-col items-start">
+                  <span
+                    className="font-normal"
+                    style={{ fontSize: "12px", letterSpacing: "-0.12px", color: "rgba(0,0,0,0.5)" }}
+                  >
+                    Qty
+                  </span>
+                  <span className="font-normal text-black" style={{ fontSize: "14px", letterSpacing: "-0.14px" }}>
+                    {qty}
+                  </span>
+                </div>
+                <svg
+                  width="16" height="16" viewBox="0 0 16 16" fill="none"
+                  className="transition-transform duration-150"
+                  style={{ transform: qtyOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                >
+                  <path d="M4 6l4 4 4-4" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
-              <span className="px-4 py-2 text-sm font-semibold">{qty}</span>
-              <button
-                onClick={() => setQty((q) => q + 1)}
-                className="px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
-              >
-                +
-              </button>
+              {qtyOpen && (
+                <div
+                  className="absolute left-0 right-0 bottom-full mb-1 bg-white border border-[#e5e5e5] rounded-[10px] overflow-hidden z-20 shadow-sm"
+                >
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                    <button
+                      key={n}
+                      onClick={() => { setQty(n); setQtyOpen(false); }}
+                      className="w-full text-left px-3 py-2 hover:bg-[#f7f7f7] transition-colors font-normal text-black"
+                      style={{ fontSize: "14px" }}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-            <button className="flex-1 bg-black text-white font-semibold py-3 rounded-full hover:bg-gray-800 transition-colors text-sm">
-              Add to Cart — $249
+            <button
+              className="flex-1 text-white font-normal rounded-[10px] hover:opacity-90 transition-opacity flex items-center justify-center"
+              style={{
+                backgroundColor: "#313131",
+                height: "55px",
+                fontSize: "14px",
+                letterSpacing: "-0.14px",
+              }}
+            >
+              ${(60 * qty).toFixed(2)} — Checkout
             </button>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ProductRobotSVG({ color }: { color: string }) {
-  const isLight = color === "#f5f5f0";
-  const faceColor = isLight ? "#e8e8e3" : color === "#1a1a1a" ? "#2a2a2a" : color;
-  const screenBg = isLight ? "#d8d8d3" : "#f0f0f0";
-
-  return (
-    <svg width="240" height="300" viewBox="0 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="140" y1="30" x2="140" y2="70" stroke="#4a7c3f" strokeWidth="3" strokeLinecap="round" />
-      <ellipse cx="118" cy="40" rx="18" ry="9" fill="#5da040" transform="rotate(-30 118 40)" />
-      <ellipse cx="162" cy="35" rx="18" ry="9" fill="#72b354" transform="rotate(25 162 35)" />
-      <ellipse cx="140" cy="28" rx="8" ry="10" fill="#5da040" />
-      <rect x="60" y="70" width="160" height="200" rx="50" fill={faceColor} />
-      <rect x="85" y="105" width="110" height="90" rx="18" fill={screenBg} />
-      <rect x="103" y="128" width="28" height="24" rx="7" fill="#1a1a1a" />
-      <rect x="149" y="128" width="28" height="24" rx="7" fill="#1a1a1a" />
-      <circle cx="110" cy="134" r="4" fill="white" />
-      <circle cx="156" cy="134" r="4" fill="white" />
-      <path d="M108 164 Q140 180 172 164" stroke="#1a1a1a" strokeWidth="3" strokeLinecap="round" fill="none" />
-      <text x="140" y="238" textAnchor="middle" fill="#aaa" fontSize="11" fontFamily="sans-serif">Solace</text>
-      <ellipse cx="100" cy="278" rx="20" ry="8" fill={isLight ? "#d0d0cb" : "#e5e5e5"} />
-      <ellipse cx="180" cy="278" rx="20" ry="8" fill={isLight ? "#d0d0cb" : "#e5e5e5"} />
-      <circle cx="220" cy="200" r="7" fill={isLight ? "#c8c8c3" : "#e0e0e0"} />
-      <circle cx="220" cy="200" r="4" fill={isLight ? "#b8b8b3" : "#cccccc"} />
-    </svg>
   );
 }

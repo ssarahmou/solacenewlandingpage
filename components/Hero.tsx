@@ -1,35 +1,58 @@
+"use client";
+
+const seedIconSrc =
+  "https://www.figma.com/api/mcp/asset/e4fd7b52-7df8-4e98-aaac-f790eb732ca7";
+
 export default function Hero() {
   return (
-    <section className="relative h-screen bg-black flex flex-col items-center justify-end pb-32">
-      {/* Video placeholder */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-gray-700 text-sm tracking-widest font-mono">[ VIDEO PLACEHOLDER ]</span>
+    <section className="relative h-screen bg-white flex flex-col items-center overflow-hidden">
+      {/* Full-bleed video background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/hero-bg.mov" type="video/quicktime" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60" />
       </div>
 
-      {/* Hero text */}
-      <div className="relative z-10 flex flex-col items-center gap-5 text-center px-4">
-        <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight max-w-2xl">
+      {/* Spacer to push copy down */}
+      <div className="flex-1" />
+
+      {/* Hero copy + CTA — pinned to bottom of hero */}
+      <div className="relative z-10 flex flex-col items-center gap-4 text-center mb-20 px-4">
+        <h1
+          className="text-white font-normal text-center leading-[0.84]"
+          style={{ fontSize: "49px", letterSpacing: "-2.94px", maxWidth: "401px" }}
+        >
           Your personal AI companion.
         </h1>
-        <p className="text-gray-400 text-base md:text-lg">
+
+        <p
+          className="text-white font-normal text-center"
+          style={{ fontSize: "19px", letterSpacing: "-0.58px", maxWidth: "386px" }}
+        >
           With Seed, it&apos;s always that deep with us.
         </p>
-        <button className="mt-2 flex items-center gap-2 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
-          <SeedIconSmall />
+
+        <button
+          className="mt-2 flex items-center gap-[18px] bg-white text-black font-normal rounded-[10px] hover:bg-gray-100 transition-colors"
+          style={{
+            fontSize: "20px",
+            letterSpacing: "-0.6px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
+            height: "51px",
+          }}
+        >
+          <img src={seedIconSrc} alt="" className="h-[23px] w-auto" />
           Shop now
         </button>
       </div>
     </section>
-  );
-}
-
-function SeedIconSmall() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="16" cy="14" rx="10" ry="11" fill="black" />
-      <path d="M6 14 Q6 26 10 26 Q12 22 16 24 Q20 22 22 26 Q26 26 26 14" fill="black" />
-      <circle cx="12" cy="13" r="2" fill="white" />
-      <circle cx="20" cy="13" r="2" fill="white" />
-    </svg>
   );
 }

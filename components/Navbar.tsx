@@ -1,42 +1,67 @@
 "use client";
 
-export default function Navbar() {
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-4 bg-black">
-      {/* Logo */}
-      <div className="flex items-center gap-2">
-        <SeedLogo />
-      </div>
+import { useEffect, useState } from "react";
 
-      {/* Nav links */}
-      <div className="flex items-center gap-8">
-        <a href="#features" className="text-white text-sm hover:text-gray-300 transition-colors">
+const seedLogoSrc = "https://www.figma.com/api/mcp/asset/0917fd9f-6f87-47c8-a0ca-eca2150167c4";
+
+export default function Navbar() {
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    const hero = document.querySelector("section");
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsDark(entry.isIntersecting),
+      { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
+    );
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-[84px] py-[57px] transition-colors duration-300">
+      {/* Logo + Nav links */}
+      <div className="flex items-center gap-[35px]">
+        <img
+          src={seedLogoSrc}
+          alt="Solace"
+          className="h-[23px] w-auto transition-all duration-300"
+          style={{ filter: isDark ? "none" : "invert(1)" }}
+        />
+        <a
+          href="#features"
+          className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
+          style={{ color: isDark ? "white" : "black" }}
+        >
           Features
         </a>
-        <a href="#about" className="text-white text-sm hover:text-gray-300 transition-colors">
+        <a
+          href="#about"
+          className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
+          style={{ color: isDark ? "white" : "black" }}
+        >
           About
         </a>
-        <a href="#contact" className="text-white text-sm hover:text-gray-300 transition-colors">
+        <a
+          href="#contact"
+          className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
+          style={{ color: isDark ? "white" : "black" }}
+        >
           Contact
         </a>
       </div>
 
       {/* Buy now */}
-      <button className="bg-white text-black text-sm font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition-colors">
+      <button
+        className="text-[14px] tracking-[-0.42px] px-[20px] h-[40px] rounded-[10px] transition-all duration-300"
+        style={{
+          backgroundColor: isDark ? "white" : "black",
+          color: isDark ? "black" : "white",
+        }}
+      >
         Buy now
       </button>
     </nav>
-  );
-}
-
-function SeedLogo() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Seed/ghost-like blob logo */}
-      <ellipse cx="16" cy="14" rx="10" ry="11" fill="white" />
-      <path d="M6 14 Q6 26 10 26 Q12 22 16 24 Q20 22 22 26 Q26 26 26 14" fill="white" />
-      <circle cx="12" cy="13" r="2" fill="black" />
-      <circle cx="20" cy="13" r="2" fill="black" />
-    </svg>
   );
 }

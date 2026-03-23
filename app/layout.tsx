@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import DevTools from "@/components/DevTools";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en" className={`${instrumentSans.variable} antialiased`}>
       <body className="min-h-full" style={{ fontFamily: "var(--font-instrument-sans), sans-serif" }}>
         {children}
+        {process.env.NODE_ENV === "development" && <DevTools />}
       </body>
     </html>
   );
