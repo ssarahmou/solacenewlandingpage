@@ -36,7 +36,7 @@ export default function AboutPage() {
           ════════════════════════════════════════════════════════════ */}
       <div className="md:hidden">
         {/* Story text */}
-        <section className="bg-white px-8 pb-10">
+        <section className="bg-white px-8 pb-10 pt-8">
           <FadeIn>
             <div
               className="inline-flex items-center justify-center px-[11px] rounded-[5px] mb-6"
@@ -77,9 +77,11 @@ export default function AboutPage() {
               We are proudly backed by...
             </p>
             <div className="flex items-center gap-4">
-              <img src={backerSeedSrc} alt="Backer" className="h-[44px] w-auto object-contain" />
-              <img src={backerIconSrc} alt="Backer" className="h-[44px] w-auto object-contain" />
-              <img src={backerLogoSrc} alt="Backer" className="h-[38px] w-auto object-contain" />
+              <div className="h-[60px] w-[60px] overflow-hidden rounded-[6px] flex-shrink-0">
+                <img src={backerSeedSrc} alt="Backer" className="w-full h-full object-cover scale-[1.8] origin-center" />
+              </div>
+              <img src={backerIconSrc} alt="Backer" className="h-[44px] w-[44px] object-contain" />
+              <img src={backerLogoSrc} alt="Backer" className="h-[44px] w-[44px] object-contain" />
             </div>
           </FadeIn>
         </section>
@@ -89,7 +91,7 @@ export default function AboutPage() {
           <FadeIn>
             <div className="flex gap-[18px] mb-2">
               {["CEO", "COO"].map((role) => (
-                <p key={role} className="font-normal w-[150px]" style={{ fontSize: "7.4px", letterSpacing: "-0.22px", color: "rgba(0,0,0,0.5)" }}>
+                <p key={role} className="font-normal w-[150px]" style={{ fontSize: "12px", letterSpacing: "-0.24px", color: "rgba(0,0,0,0.5)" }}>
                   {role}
                 </p>
               ))}
@@ -100,12 +102,12 @@ export default function AboutPage() {
             </div>
             <div className="flex gap-[18px]">
               <div style={{ width: "150px" }}>
-                <p className="font-normal text-black mb-[2px]" style={{ fontSize: "12px", letterSpacing: "-0.36px", lineHeight: "1.2" }}>Kelly Zeng</p>
-                <p className="font-normal" style={{ fontSize: "8px", color: "rgba(0,0,0,0.5)", lineHeight: "1.45" }}>UC Berkeley Economics &amp; Data Science</p>
+                <p className="font-normal text-black mb-[2px]" style={{ fontSize: "15px", letterSpacing: "-0.45px", lineHeight: "1.2" }}>Kelly Zeng</p>
+                <p className="font-normal" style={{ fontSize: "12px", color: "rgba(0,0,0,0.5)", lineHeight: "1.45" }}>UC Berkeley Economics &amp; Data Science</p>
               </div>
               <div style={{ width: "150px" }}>
-                <p className="font-normal text-black mb-[2px]" style={{ fontSize: "12px", letterSpacing: "-0.36px", lineHeight: "1.2" }}>Sarah Mou</p>
-                <p className="font-normal" style={{ fontSize: "8px", color: "rgba(0,0,0,0.5)", lineHeight: "1.45" }}>UC Berkeley Cognitive Science &amp; Design</p>
+                <p className="font-normal text-black mb-[2px]" style={{ fontSize: "15px", letterSpacing: "-0.45px", lineHeight: "1.2" }}>Sarah Mou</p>
+                <p className="font-normal" style={{ fontSize: "12px", color: "rgba(0,0,0,0.5)", lineHeight: "1.45" }}>UC Berkeley Cognitive Science &amp; Design</p>
               </div>
             </div>
           </FadeIn>
@@ -156,7 +158,9 @@ export default function AboutPage() {
               We are proudly backed by...
             </p>
             <div className="flex items-center gap-5">
-              <img src={backerSeedSrc} alt="Backer" className="h-[50px] w-auto object-contain" />
+              <div className="h-[50px] w-[50px] overflow-hidden rounded-[6px] flex-shrink-0">
+                <img src={backerSeedSrc} alt="Backer" className="w-full h-full object-cover scale-[1.8] origin-center" />
+              </div>
               <img src={backerIconSrc} alt="Backer" className="h-[50px] w-auto object-contain" />
               <img src={backerLogoSrc} alt="Backer" className="h-[42px] w-auto object-contain" />
             </div>
