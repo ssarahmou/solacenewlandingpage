@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FadeIn from "@/components/FadeIn";
 
 // Figma node 3449-3941 assets
 const heroBgSrc      = "https://www.figma.com/api/mcp/asset/f697912e-14ef-4324-ab6c-9afc8e361aea";
@@ -36,7 +37,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto flex gap-0 items-start">
 
           {/* Left column: story text */}
-          <div className="flex-1 pr-16 pt-[56px]">
+          <FadeIn direction="right" className="flex-1 pr-16 pt-[56px]">
             {/* "Our story" pill */}
             <div
               className="inline-flex items-center justify-center px-3 rounded-[5px] mb-7"
@@ -100,7 +101,7 @@ export default function AboutPage() {
                 <img src={backerLogoSrc}  alt="Backer" className="h-[42px] w-auto object-contain" />
               </div>
             </div>
-          </div>
+          </FadeIn>
 
           {/* Vertical divider */}
           <div
@@ -109,7 +110,7 @@ export default function AboutPage() {
           />
 
           {/* Right column: founder photos */}
-          <div className="pl-16 pt-[56px] flex-shrink-0">
+          <FadeIn delay={200} direction="left" className="pl-16 pt-[56px] flex-shrink-0">
             {/* Role labels */}
             <div className="flex gap-[30px] mb-5">
               {["CEO", "COO"].map((role) => (
@@ -184,7 +185,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 

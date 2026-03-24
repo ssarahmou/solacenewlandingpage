@@ -1,3 +1,5 @@
+import FadeIn from "./FadeIn";
+
 const leafIconSrc = "https://www.figma.com/api/mcp/asset/81a0a818-6a26-4067-8729-0585f4d32b78";
 const lightningIconSrc = "https://www.figma.com/api/mcp/asset/5470850a-bbfb-48a0-baba-dfdd963976aa";
 const magicHandsIconSrc = "https://www.figma.com/api/mcp/asset/cf9f4cec-9686-49c0-aca4-f787c38c5442";
@@ -8,16 +10,19 @@ export default function FeaturesGrid() {
   return (
     <section id="features" className="bg-white pt-16 pb-10 md:py-20 px-8">
       <div className="max-w-6xl mx-auto">
-        <h2
-          className="font-normal text-black text-center mb-6 md:mb-12"
-          style={{ fontSize: "30px", letterSpacing: "-0.9px" }}
-        >
-          There for you, even when your friends aren&apos;t.
-        </h2>
+        <FadeIn>
+          <h2
+            className="font-normal text-black text-center mb-6 md:mb-12"
+            style={{ fontSize: "30px", letterSpacing: "-0.9px" }}
+          >
+            There for you, even when your friends aren&apos;t.
+          </h2>
+        </FadeIn>
 
         <div className="flex flex-col md:flex-row gap-[40px] justify-center items-center md:items-start">
           {/* Card 1: Customizable personalities */}
-          <div className="flex flex-col gap-4 w-full md:w-1/3">
+          <FadeIn delay={0} className="w-full md:w-1/3">
+          <div className="flex flex-col gap-4 w-full">
             <div
               className="overflow-hidden rounded-[20px] flex flex-col justify-between w-full"
               style={{ backgroundColor: "#f8f8f8", height: "397px", padding: "0" }}
@@ -78,9 +83,11 @@ export default function FeaturesGrid() {
               Make Solace truly yours. Choose a personality that matches your vibe and let your AI companion adapt to how you like to interact.
             </p>
           </div>
+          </FadeIn>
 
           {/* Card 2: Mindfulness & reflection */}
-          <div className="flex flex-col gap-4 w-full md:w-1/3">
+          <FadeIn delay={130} className="w-full md:w-1/3">
+          <div className="flex flex-col gap-4 w-full">
             <div
               className="overflow-hidden rounded-[20px] relative w-full"
               style={{ backgroundColor: "#f8f8f8", height: "397px" }}
@@ -120,9 +127,11 @@ export default function FeaturesGrid() {
               Guided check-ins and journaling prompts help you understand your feelings, and practice small moments of mindfulness daily.
             </p>
           </div>
+          </FadeIn>
 
           {/* Card 3: Always-on emotional support */}
-          <div className="flex flex-col gap-4 w-full md:w-1/3">
+          <FadeIn delay={260} className="w-full md:w-1/3">
+          <div className="flex flex-col gap-4 w-full">
             <div
               className="overflow-hidden rounded-[20px] relative w-full"
               style={{ backgroundColor: "#f8f8f8", height: "397px" }}
@@ -160,6 +169,7 @@ export default function FeaturesGrid() {
               Solace is there whenever you need it — ready to listen, check in, or guide you through stress and tough days.
             </p>
           </div>
+          </FadeIn>
         </div>
       </div>
     </section>

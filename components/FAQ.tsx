@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FadeIn from "./FadeIn";
 
 const faqs = [
   {
@@ -28,6 +29,7 @@ export default function FAQ() {
     <section id="contact" className="bg-white py-10 md:py-24 px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left */}
+        <FadeIn direction="right">
         <div className="flex flex-col gap-6">
           <h2
             className="font-normal text-black leading-[1.08]"
@@ -57,8 +59,10 @@ export default function FAQ() {
             Contact us
           </button>
         </div>
+        </FadeIn>
 
         {/* Right: accordion */}
+        <FadeIn delay={150} direction="left">
         <div className="flex flex-col">
           {faqs.map((faq, i) => (
             <div
@@ -133,6 +137,7 @@ export default function FAQ() {
             </div>
           ))}
         </div>
+        </FadeIn>
       </div>
     </section>
   );

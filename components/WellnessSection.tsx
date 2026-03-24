@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import FadeIn from "./FadeIn";
 
 // Right-side spec icons
 const oledIconSrc = "https://www.figma.com/api/mcp/asset/d756455e-d0a9-412e-bb9b-a10c164cb016";
@@ -68,24 +69,28 @@ export default function WellnessSection() {
     <section id="about" className="bg-white overflow-hidden">
       {/* Centered heading + description */}
       <div className="pt-6 md:pt-10 px-8 text-center">
-        <h2
-          className="font-normal text-black leading-[0.95] mx-auto"
-          style={{ fontSize: "40px", letterSpacing: "-1.2px", maxWidth: "630px" }}
-        >
-          A wellness companion designed for emotional presence, every day.
-        </h2>
-        <p
-          className="font-normal leading-[1.28] mx-auto mt-6"
-          style={{
-            fontSize: "20px",
-            letterSpacing: "-0.6px",
-            color: "rgba(0,0,0,0.5)",
-            maxWidth: "718px",
-          }}
-        >
-          Solace Seed combines embodied AI, emotion-aware conversation, and long-term memory to
-          help users feel seen, supported, and steadier over time.
-        </p>
+        <FadeIn>
+          <h2
+            className="font-normal text-black leading-[0.95] mx-auto"
+            style={{ fontSize: "40px", letterSpacing: "-1.2px", maxWidth: "630px" }}
+          >
+            A wellness companion designed for emotional presence, every day.
+          </h2>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <p
+            className="font-normal leading-[1.28] mx-auto mt-6"
+            style={{
+              fontSize: "20px",
+              letterSpacing: "-0.6px",
+              color: "rgba(0,0,0,0.5)",
+              maxWidth: "718px",
+            }}
+          >
+            Solace Seed combines embodied AI, emotion-aware conversation, and long-term memory to
+            help users feel seen, supported, and steadier over time.
+          </p>
+        </FadeIn>
       </div>
 
       {/* Product showcase: left specs | robot | right specs */}
@@ -95,20 +100,21 @@ export default function WellnessSection() {
 
         <div className="relative max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center md:items-end justify-center gap-[50px]">
           {/* Left specs — desktop only */}
-          <div className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
+          <FadeIn delay={100} direction="right" className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
             <SpecItem icon={batteryIconSrc} label="500mAh battery" />
             <SpecItem icon={chargingIconSrc} label="Type-C Charging" />
             <SpecItem
               icon={rockerIconSrc}
               label="Side rocker – volume / long-press skip/recall last response"
             />
-          </div>
+          </FadeIn>
 
           {/* Device composite — both images placed on the same coordinate space
               as the original device.png (2854×3466) reference canvas.
               Container uses device.png aspect ratio so both layers align correctly. */}
+          <FadeIn delay={0} direction="up" distance={40} style={{ flexShrink: 0 }}>
           <div
-            className="relative z-10 flex-shrink-0 w-[420px] md:w-[520px]"
+            className="relative z-10 w-[420px] md:w-[520px]"
             style={{ aspectRatio: "2854 / 3466" }}
           >
             {/* Leaf: same canvas width as device.png, but only 2036px wide →
@@ -147,14 +153,15 @@ export default function WellnessSection() {
               }}
             />
           </div>
+          </FadeIn>
 
           {/* Right specs — desktop only */}
-          <div className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
+          <FadeIn delay={100} direction="left" className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
             <SpecItem icon={oledIconSrc} label="1.3–1.5 inch low-power OLED (240 × 240)" />
             <SpecItem icon={summonIconSrc} label="Summon button" />
             <SpecItem icon={micIconSrc} label="2 MEMS mic array" />
             <SpecItem icon={speakerIconSrc} label="3W loudspeaker" />
-          </div>
+          </FadeIn>
         </div>
 
         {/* Mobile specs — below device */}

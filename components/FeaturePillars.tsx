@@ -1,3 +1,5 @@
+import FadeIn from "./FadeIn";
+
 const lockIconSrc = "/icon-lock.svg";
 const leafIconSrc = "/icon-leaf.svg";
 const magicIconSrc = "/icon-magic.svg";
@@ -24,10 +26,10 @@ export default function FeaturePillars() {
   return (
     <section className="bg-white py-8 md:py-16 px-8">
       <div className="flex flex-col md:flex-row items-center justify-center gap-[15px] max-w-5xl mx-auto">
-        {pillars.map((p) => (
+        {pillars.map((p, i) => (
+          <FadeIn key={p.title} delay={i * 120} direction="up" className="w-full md:w-[442px]">
           <div
-            key={p.title}
-            className="flex flex-col gap-[14px] items-center justify-center px-6 md:px-[44px] py-[40px] rounded-[10px] w-full md:w-[442px]"
+            className="flex flex-col gap-[14px] items-center justify-center px-6 md:px-[44px] py-[40px] rounded-[10px] w-full"
           >
             <div className="flex items-center gap-[18px]">
               <img src={p.icon} alt="" className="w-[24px] h-[24px]" />
@@ -50,6 +52,7 @@ export default function FeaturePillars() {
               {p.description}
             </p>
           </div>
+          </FadeIn>
         ))}
       </div>
     </section>

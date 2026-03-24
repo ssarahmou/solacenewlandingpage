@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import FadeIn from "./FadeIn";
 
 const productImages = [
   "/solaceseed.png",
@@ -42,18 +43,21 @@ export default function ProductSection() {
     <section className="bg-white py-10 md:py-24 px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left: product image */}
-        <div
-          className="overflow-hidden rounded-[8px]"
-          style={{ backgroundColor: "#f8f8f8", minHeight: "400px" }}
-        >
-          <img
-            src={productImages[activeImage]}
-            alt="Solace Seed"
-            className="w-full h-full object-cover transition-opacity duration-200"
-          />
-        </div>
+        <FadeIn direction="right">
+          <div
+            className="overflow-hidden rounded-[8px]"
+            style={{ backgroundColor: "#f8f8f8", minHeight: "400px" }}
+          >
+            <img
+              src={productImages[activeImage]}
+              alt="Solace Seed"
+              className="w-full h-full object-cover transition-opacity duration-200"
+            />
+          </div>
+        </FadeIn>
 
         {/* Right: product details */}
+        <FadeIn delay={150} direction="left">
         <div className="flex flex-col gap-6 pt-4">
           {/* Product photo thumbnails — shows first on mobile via order */}
           <div className="flex flex-wrap gap-3 order-first md:order-none md:hidden">
@@ -230,6 +234,7 @@ export default function ProductSection() {
             </button>
           </div>
         </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -1,9 +1,20 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 const seedIconSrc =
   "https://www.figma.com/api/mcp/asset/e4fd7b52-7df8-4e98-aaac-f790eb732ca7";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setMounted(true), 80); return () => clearTimeout(t); }, []);
+
+  const fade = (delay: number) => ({
+    opacity:    mounted ? 1 : 0,
+    transform:  mounted ? "none" : "translateY(22px)",
+    transition: `opacity 800ms cubic-bezier(0.4,0,0.2,1) ${delay}ms, transform 800ms cubic-bezier(0.4,0,0.2,1) ${delay}ms`,
+  });
+
   return (
     <section className="relative h-screen bg-white flex flex-col items-center overflow-hidden">
       {/* Full-bleed video background */}
@@ -27,14 +38,14 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col items-center gap-4 text-center mb-20 px-4">
         <h1
           className="text-white font-normal text-center leading-[0.84]"
-          style={{ fontSize: "49px", letterSpacing: "-2.94px", maxWidth: "401px" }}
+          style={{ fontSize: "49px", letterSpacing: "-2.94px", maxWidth: "401px", ...fade(0) }}
         >
           Your personal AI companion.
         </h1>
 
         <p
           className="text-white font-normal text-center"
-          style={{ fontSize: "19px", letterSpacing: "-0.58px", maxWidth: "386px" }}
+          style={{ fontSize: "19px", letterSpacing: "-0.58px", maxWidth: "386px", ...fade(150) }}
         >
           With Seed, it&apos;s always that deep with us.
         </p>
@@ -47,6 +58,7 @@ export default function Hero() {
             paddingLeft: "20px",
             paddingRight: "20px",
             height: "51px",
+            ...fade(300),
           }}
         >
           <img src={seedIconSrc} alt="" className="h-[23px] w-auto" />
