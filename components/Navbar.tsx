@@ -52,12 +52,14 @@ export default function Navbar() {
     >
       <div className="flex items-center justify-between px-6 md:px-[84px] py-6 md:py-[57px]">
         <div className="flex items-center gap-[35px]">
-          <img
-            src={seedLogoSrc}
-            alt="Solace"
-            className="h-[23px] w-auto"
-            style={{ filter: isDark && !menuOpen ? "none" : "invert(1)", transition: "filter 200ms ease" }}
-          />
+          <a href="/">
+            <img
+              src={seedLogoSrc}
+              alt="Solace"
+              className="h-[23px] w-auto"
+              style={{ filter: isDark && !menuOpen ? "none" : "invert(1)", transition: "filter 200ms ease" }}
+            />
+          </a>
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-[35px]">
             <a
