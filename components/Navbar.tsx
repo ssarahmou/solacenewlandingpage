@@ -30,21 +30,21 @@ export default function Navbar() {
           style={{ filter: isDark ? "none" : "invert(1)" }}
         />
         <a
-          href="#features"
+          href="/#features"
           className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
           style={{ color: isDark ? "white" : "black" }}
         >
           Features
         </a>
         <a
-          href="#about"
+          href="/about"
           className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
           style={{ color: isDark ? "white" : "black" }}
         >
           About
         </a>
         <a
-          href="#contact"
+          href="mailto:kellyzeng@solacelaunch.org"
           className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
           style={{ color: isDark ? "white" : "black" }}
         >
@@ -53,15 +53,18 @@ export default function Navbar() {
       </div>
 
       {/* Buy now */}
-      <button
-        className="text-[14px] tracking-[-0.42px] px-[20px] h-[40px] rounded-[10px] transition-all duration-300"
+      <a
+        href="https://buy.stripe.com/7sY14gbMK4VZb3v9lOa3u00"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[14px] tracking-[-0.42px] px-[20px] h-[40px] rounded-[10px] transition-all duration-300 flex items-center justify-center"
         style={{
           backgroundColor: isDark ? "white" : "black",
           color: isDark ? "black" : "white",
         }}
       >
         Buy now
-      </button>
+      </a>
     </nav>
   );
 }
