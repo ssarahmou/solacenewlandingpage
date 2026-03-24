@@ -167,7 +167,6 @@ export default function Navbar() {
           >
             Buy now
           </a>
-        </div>
       </div>
     </nav>
   );
