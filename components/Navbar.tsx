@@ -128,8 +128,15 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-white px-6 pb-6 flex flex-col gap-4">
+      <div
+        className="md:hidden bg-white px-6 flex flex-col gap-4 overflow-hidden"
+        style={{
+          maxHeight: menuOpen ? "300px" : "0px",
+          opacity: menuOpen ? 1 : 0,
+          paddingBottom: menuOpen ? "24px" : "0px",
+          transition: "max-height 300ms ease, opacity 250ms ease, padding-bottom 300ms ease",
+        }}
+      >
           <a
             href="/#features"
             onClick={() => setMenuOpen(false)}
@@ -161,7 +168,7 @@ export default function Navbar() {
             Buy now
           </a>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
