@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const seedIconSrc =
-  "https://www.figma.com/api/mcp/asset/e4fd7b52-7df8-4e98-aaac-f790eb732ca7";
+const shopIconSrc = "/2.png";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -61,7 +60,7 @@ export default function Hero() {
             ...fade(300),
           }}
         >
-          <img src={seedIconSrc} alt="" className="h-[23px] w-auto" />
+          <img src={shopIconSrc} alt="" className="h-[23px] w-auto" />
           Shop now
         </button>
       </div>

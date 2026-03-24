@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const seedLogoSrc = "https://www.figma.com/api/mcp/asset/0917fd9f-6f87-47c8-a0ca-eca2150167c4";
+const seedLogoSrc = "/1.png";
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(true);

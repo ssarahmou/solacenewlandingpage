@@ -2,13 +2,18 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FadeIn from "@/components/FadeIn";
 
-// Figma assets (node 3462-1287 mobile / 3449-3941 desktop)
-const heroBgSrc     = "https://www.figma.com/api/mcp/asset/9dfb3aea-3004-49a5-bb50-98acfc2ec7a2";
-const kellyPhotoSrc = "https://www.figma.com/api/mcp/asset/3c35b4ee-52bb-4552-bb46-b6c39a935df3";
-const sarahPhotoSrc = "https://www.figma.com/api/mcp/asset/0d4cb013-21ae-460e-a91f-ae05cf75eb64";
-const backerSeedSrc = "https://www.figma.com/api/mcp/asset/3cbd1c24-e007-42f9-9f82-dad89b4087ab";
-const backerIconSrc = "https://www.figma.com/api/mcp/asset/7ddecee1-919a-4ab7-ba2c-e1965e1e8653";
-const backerLogoSrc = "https://www.figma.com/api/mcp/asset/ee7f317e-35d4-4372-a22b-763fd5de7b58";
+/** Filenames with spaces/commas — encode for valid URLs (Figma About 3449:3941 assets). */
+const pub = (filename: string) => `/${encodeURIComponent(filename)}`;
+
+const heroBgSrc = pub("image 345.png");
+const kellyPhotoSrc = pub("Frame 2085662114.png");
+const sarahPhotoSrc = pub("Frame 2085662113.png");
+/** Backer row: teal mark, geometric mark, Berkeley seal (left → right). */
+const backerRowSrcs = [
+  pub("image 16.png"),
+  pub("Group 35142.png"),
+  pub("Group 1000003038.png"),
+] as const;
 
 export const metadata = {
   title: "About — Solace",
@@ -76,12 +81,15 @@ export default function AboutPage() {
             <p className="font-normal mb-3" style={{ fontSize: "12.7px", letterSpacing: "-0.25px", color: "#3a7367" }}>
               We are proudly backed by...
             </p>
-            <div className="flex items-center gap-4">
-              <div className="h-[60px] w-[60px] overflow-hidden rounded-[6px] flex-shrink-0">
-                <img src={backerSeedSrc} alt="Backer" className="w-full h-full object-cover scale-[1.8] origin-center" />
-              </div>
-              <img src={backerIconSrc} alt="Backer" className="h-[44px] w-[44px] object-contain" />
-              <img src={backerLogoSrc} alt="Backer" className="h-[44px] w-[44px] object-contain" />
+            <div className="flex flex-row items-center gap-4">
+              {backerRowSrcs.map((src) => (
+                <div
+                  key={src}
+                  className="h-[52px] w-[52px] shrink-0 overflow-hidden rounded-[6px] flex items-center justify-center"
+                >
+                  <img src={src} alt="" className="max-h-full max-w-full object-contain" />
+                </div>
+              ))}
             </div>
           </FadeIn>
         </section>
@@ -157,12 +165,15 @@ export default function AboutPage() {
             <p className="font-normal mb-4" style={{ fontSize: "14px", letterSpacing: "-0.28px", color: "#3a7367" }}>
               We are proudly backed by...
             </p>
-            <div className="flex items-center gap-5">
-              <div className="h-[50px] w-[50px] overflow-hidden rounded-[6px] flex-shrink-0">
-                <img src={backerSeedSrc} alt="Backer" className="w-full h-full object-cover scale-[1.8] origin-center" />
-              </div>
-              <img src={backerIconSrc} alt="Backer" className="h-[50px] w-auto object-contain" />
-              <img src={backerLogoSrc} alt="Backer" className="h-[42px] w-auto object-contain" />
+            <div className="flex flex-row items-center gap-5">
+              {backerRowSrcs.map((src) => (
+                <div
+                  key={src}
+                  className="h-[50px] w-[50px] shrink-0 overflow-hidden rounded-[6px] flex items-center justify-center"
+                >
+                  <img src={src} alt="" className="max-h-full max-w-full object-contain" />
+                </div>
+              ))}
             </div>
           </FadeIn>
 

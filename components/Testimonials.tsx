@@ -2,16 +2,16 @@
 
 import { useRef } from "react";
 
-const bgImageSrc = "https://www.figma.com/api/mcp/asset/c1e374a9-e328-424a-bc64-7fa0499c51ed";
-const arrowNextSrc = "https://www.figma.com/api/mcp/asset/43a7963a-1a72-46d6-8fe3-cc7cfb8d5f4b";
-const arrowPrevSrc = "https://www.figma.com/api/mcp/asset/baeeefcd-2b57-4236-808e-d0917593f465";
+const bgImageSrc = "/testimonials-bg.jpg";
+const arrowNextSrc = "/icon-arrow-next.svg";
+const arrowPrevSrc = "/icon-arrow-prev.svg";
 
 const videoImages = [
-  "https://www.figma.com/api/mcp/asset/dd864c36-fe34-41c6-b357-59eded9fc03f",
-  "https://www.figma.com/api/mcp/asset/6ea9714a-6ed8-45f5-b56c-8f5e76843f9e",
-  "https://www.figma.com/api/mcp/asset/795fb231-57b4-445d-9226-27cabf16d21f",
-  "https://www.figma.com/api/mcp/asset/a87a1c53-5a70-4c64-b7a2-c45c8cafb915",
-  "https://www.figma.com/api/mcp/asset/dd864c36-fe34-41c6-b357-59eded9fc03f",
+  "/testimonial-1.jpg",
+  "/testimonial-2.jpg",
+  "/testimonial-3.jpg",
+  "/testimonial-4.jpg",
+  "/testimonial-1.jpg",
 ];
 
 export default function Testimonials() {

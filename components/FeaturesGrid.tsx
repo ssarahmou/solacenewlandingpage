@@ -1,10 +1,15 @@
 import FadeIn from "./FadeIn";
 
-const leafIconSrc = "https://www.figma.com/api/mcp/asset/81a0a818-6a26-4067-8729-0585f4d32b78";
-const lightningIconSrc = "https://www.figma.com/api/mcp/asset/5470850a-bbfb-48a0-baba-dfdd963976aa";
-const magicHandsIconSrc = "https://www.figma.com/api/mcp/asset/cf9f4cec-9686-49c0-aca4-f787c38c5442";
-const checkIconSrc = "https://www.figma.com/api/mcp/asset/685a7eee-92be-489e-be10-95889176f7eb";
-const micIconSrc = "https://www.figma.com/api/mcp/asset/87599a20-29f0-4636-897d-a57a2282f266";
+/** Public filenames include commas/spaces — encode for valid URLs */
+const icon = (filename: string) => `/${encodeURIComponent(filename)}`;
+
+const lightningIconSrc = icon("lightning, zap, flash.png");
+const leafIconSrc = icon("growth, grow, leafs.png");
+const magicHandsIconSrc = icon("magic hands, magic rainbow.png");
+const performanceIconSrc = icon("performance, speed, scale.png");
+const lightBulbIconSrc = icon("light bulb, idea, light.png");
+const flowerIconSrc = icon("Focus, exposure, macro, flower 2.png");
+const micIconSrc = icon("microphone, mic, sound, podcast.png");
 
 export default function FeaturesGrid() {
   return (
@@ -102,15 +107,21 @@ export default function FeaturesGrid() {
                     Daily check-in{" "}
                     <span style={{ color: "rgba(0,0,0,0.5)" }}>February 12</span>
                   </span>
-                  <img src={checkIconSrc} alt="✓" className="w-[23px] h-[23px]" />
+                  <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden className="shrink-0 text-black">
+                    <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.2" />
+                    <path d="M8 12l2.5 2.5L16 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
                 <div className="flex flex-col gap-3">
                   {[
-                    { q: "How are you feeling on a scale from 1-10?", a: "Around an 8" },
-                    { q: "Main focuses for today?", a: "Studying for my exam on Friday" },
-                    { q: "What are you grateful for?", a: "My friends and family" },
+                    { q: "How are you feeling on a scale from 1-10?", a: "Around an 8", iconSrc: performanceIconSrc },
+                    { q: "Main focuses for today?", a: "Studying for my exam on Friday", iconSrc: lightBulbIconSrc },
+                    { q: "What are you grateful for?", a: "My friends and family", iconSrc: flowerIconSrc },
                   ].map((item) => (
                     <div key={item.q} className="flex items-center gap-3 bg-[#f7f7f7] rounded-[10px] px-3 py-3">
+                      <div className="bg-white overflow-hidden relative rounded-[5px] shrink-0 size-[40px] flex items-center justify-center">
+                        <img src={item.iconSrc} alt="" className="w-[23px] h-[23px] object-contain" />
+                      </div>
                       <div>
                         <p className="font-normal" style={{ fontSize: "12px", color: "rgba(0,0,0,0.5)" }}>{item.q}</p>
                         <p className="font-normal text-black mt-1" style={{ fontSize: "12px" }}>{item.a}</p>

@@ -3,21 +3,36 @@
 import { useEffect, useRef } from "react";
 import FadeIn from "./FadeIn";
 
-// Right-side spec icons
-const oledIconSrc = "https://www.figma.com/api/mcp/asset/d756455e-d0a9-412e-bb9b-a10c164cb016";
-const summonIconSrc = "https://www.figma.com/api/mcp/asset/b0709da3-c54b-42a4-bec4-c5a06ed9f4c2";
-const micIconSrc = "https://www.figma.com/api/mcp/asset/da47b70d-eabc-4e9f-bdd0-1709dd7f18e6";
-const speakerIconSrc = "https://www.figma.com/api/mcp/asset/4aaf0517-b271-4100-93e6-73cc57e1e6f1";
+/** Filenames include commas/spaces — encode for valid URLs */
+const specIcon = (filename: string) => `/${encodeURIComponent(filename)}`;
 
-// Left-side spec icons
-const batteryIconSrc = "https://www.figma.com/api/mcp/asset/14e2fa76-7a55-4fc4-91ae-789bd15c44c9";
-const chargingIconSrc = "https://www.figma.com/api/mcp/asset/e7824ba5-0d77-4768-9f06-84f1a2babdf9";
-const rockerIconSrc = "https://www.figma.com/api/mcp/asset/df7d7d37-041e-4e71-b95a-155152462c61";
+// Right-side spec icons (Figma: OLED, summon, mic, speaker)
+const oledIconSrc = specIcon("television 1, tv, monitor, video, screen, display.png");
+const summonIconSrc = specIcon("heart, like, health, life, favorite.png");
+const micIconSrc = specIcon("microphone, mic, sound, podcast.png");
+const speakerIconSrc = specIcon("volume half, speaker, loud, sound on, music.png");
 
-function SpecItem({ icon, label }: { icon: string; label: string }) {
+// Left-side spec icons (Figma: battery, charging, side rocker)
+const batteryIconSrc = specIcon("battery empty, power.png");
+const chargingIconSrc = specIcon("lightning, zap, flash.png");
+const rockerIconSrc = specIcon("live, signal.png");
+
+function SpecItem({
+  icon,
+  label,
+  imgClassName = "",
+}: {
+  icon: string;
+  label: string;
+  imgClassName?: string;
+}) {
   return (
     <div className="flex items-start gap-[13px] self-start">
-      <img src={icon} alt="" className="w-[25px] h-[25px] shrink-0 mt-[1px] object-contain" />
+      <img
+        src={icon}
+        alt=""
+        className={`w-[25px] h-[25px] shrink-0 mt-[1px] object-contain ${imgClassName}`}
+      />
       <p
         className="font-normal leading-[1.55]"
         style={{ fontSize: "13.33px", color: "rgba(0,0,0,0.8)", letterSpacing: "-0.13px" }}
@@ -159,7 +174,7 @@ export default function WellnessSection() {
           <FadeIn delay={100} direction="left" className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
             <SpecItem icon={oledIconSrc} label="1.3–1.5 inch low-power OLED (240 × 240)" />
             <SpecItem icon={summonIconSrc} label="Summon button" />
-            <SpecItem icon={micIconSrc} label="2 MEMS mic array" />
+            <SpecItem icon={micIconSrc} label="2 MEMS mic array" imgClassName="brightness-0" />
             <SpecItem icon={speakerIconSrc} label="3W loudspeaker" />
           </FadeIn>
         </div>
@@ -170,7 +185,7 @@ export default function WellnessSection() {
           <SpecItem icon={batteryIconSrc} label="500mAh battery" />
           <SpecItem icon={summonIconSrc} label="Summon button" />
           <SpecItem icon={chargingIconSrc} label="Type-C Charging" />
-          <SpecItem icon={micIconSrc} label="2 MEMS mic array" />
+          <SpecItem icon={micIconSrc} label="2 MEMS mic array" imgClassName="brightness-0" />
           <SpecItem icon={rockerIconSrc} label="Side rocker – volume / long-press skip/recall last response" />
           <SpecItem icon={speakerIconSrc} label="3W loudspeaker" />
         </div>

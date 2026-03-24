@@ -10,17 +10,19 @@ const productImages = [
   "/product-3.png",
 ];
 
+const specIcon = (filename: string) => `/${encodeURIComponent(filename)}`;
+
 const specsLeft = [
-  { icon: "📺", label: "1.3–1.5 inch low-power OLED (240 × 240)" },
-  { icon: "❤️", label: "Summon button" },
-  { icon: "🎤", label: "2 MEMS mic array" },
-  { icon: "🔊", label: "3W loudspeaker" },
+  { iconSrc: specIcon("television 1, tv, monitor, video, screen, display.png"), label: "1.3–1.5 inch low-power OLED (240 × 240)" },
+  { iconSrc: specIcon("heart, like, health, life, favorite.png"), label: "Summon button" },
+  { iconSrc: specIcon("microphone, mic, sound, podcast.png"), label: "2 MEMS mic array" },
+  { iconSrc: specIcon("volume half, speaker, loud, sound on, music.png"), label: "3W loudspeaker" },
 ];
 
 const specsRight = [
-  { icon: "🔋", label: "500mAh battery" },
-  { icon: "⚡", label: "Type-C Charging" },
-  { icon: "📶", label: "Side rocker – volume / long-press skip/recall last response" },
+  { iconSrc: specIcon("battery empty, power.png"), label: "500mAh battery" },
+  { iconSrc: specIcon("lightning, zap, flash.png"), label: "Type-C Charging" },
+  { iconSrc: specIcon("live, signal.png"), label: "Side rocker – volume / long-press skip/recall last response" },
 ];
 
 export default function ProductSection() {
@@ -129,7 +131,11 @@ export default function ProductSection() {
             <div className="flex flex-col gap-3">
               {specsLeft.map((s) => (
                 <div key={s.label} className="flex items-start gap-3">
-                  <span className="text-sm shrink-0 mt-0.5">{s.icon}</span>
+                  <img
+                    src={s.iconSrc}
+                    alt=""
+                    className={`w-[25px] h-[25px] shrink-0 mt-0.5 object-contain ${s.label.includes("MEMS mic") ? "brightness-0" : ""}`}
+                  />
                   <span
                     className="font-normal leading-[1.55]"
                     style={{ fontSize: "13px", letterSpacing: "-0.13px", color: "rgba(0,0,0,0.8)" }}
@@ -142,7 +148,11 @@ export default function ProductSection() {
             <div className="flex flex-col gap-3">
               {specsRight.map((s) => (
                 <div key={s.label} className="flex items-start gap-3">
-                  <span className="text-sm shrink-0 mt-0.5">{s.icon}</span>
+                  <img
+                    src={s.iconSrc}
+                    alt=""
+                    className={`w-[25px] h-[25px] shrink-0 mt-0.5 object-contain ${s.label.includes("MEMS mic") ? "brightness-0" : ""}`}
+                  />
                   <span
                     className="font-normal leading-[1.55]"
                     style={{ fontSize: "13px", letterSpacing: "-0.13px", color: "rgba(0,0,0,0.8)" }}

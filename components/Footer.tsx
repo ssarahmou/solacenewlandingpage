@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
-const arrowSrc = "https://www.figma.com/api/mcp/asset/0f65faf7-54ba-4e12-b0d4-6de369a69384";
+const arrowSrc = "/grommet-icons_link-next.png";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -17,6 +17,11 @@ export default function Footer() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setStatus("invalid");
+      return;
+    }
+    if (!supabase) {
+      console.error("Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local and restart the dev server.");
+      setStatus("error");
       return;
     }
     setStatus("loading");
