@@ -23,14 +23,21 @@ export default function Navbar() {
   const linkColor = isDark && !menuOpen ? "white" : "black";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        backgroundColor: menuOpen ? "white" : "transparent",
+        // instant white on open, fade back to transparent on close
+        transition: menuOpen ? "none" : "background-color 200ms ease",
+      }}
+    >
       <div className="flex items-center justify-between px-6 md:px-[84px] py-6 md:py-[57px]">
         <div className="flex items-center gap-[35px]">
           <img
             src={seedLogoSrc}
             alt="Solace"
-            className="h-[23px] w-auto transition-all duration-300"
-            style={{ filter: isDark && !menuOpen ? "none" : "invert(1)" }}
+            className="h-[23px] w-auto"
+            style={{ filter: isDark && !menuOpen ? "none" : "invert(1)", transition: "filter 200ms ease" }}
           />
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-[35px]">
@@ -81,7 +88,7 @@ export default function Navbar() {
             className="block w-5 h-[2px] rounded transition-all duration-200"
             style={{
               backgroundColor: isDark && !menuOpen ? "white" : "black",
-              transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none",
+              transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
             }}
           />
           <span
@@ -95,7 +102,7 @@ export default function Navbar() {
             className="block w-5 h-[2px] rounded transition-all duration-200"
             style={{
               backgroundColor: isDark && !menuOpen ? "white" : "black",
-              transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none",
+              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
             }}
           />
         </button>
