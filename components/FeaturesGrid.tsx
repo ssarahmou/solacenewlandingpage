@@ -6,27 +6,27 @@ const micIconSrc = "https://www.figma.com/api/mcp/asset/87599a20-29f0-4636-897d-
 
 export default function FeaturesGrid() {
   return (
-    <section id="features" className="bg-white py-20 px-8">
+    <section id="features" className="bg-white pt-16 pb-10 md:py-20 px-8">
       <div className="max-w-6xl mx-auto">
         <h2
-          className="font-normal text-black text-center mb-12"
+          className="font-normal text-black text-center mb-6 md:mb-12"
           style={{ fontSize: "30px", letterSpacing: "-0.9px" }}
         >
           There for you, even when your friends aren&apos;t.
         </h2>
 
-        <div className="flex gap-[40px] justify-center">
+        <div className="flex flex-col md:flex-row gap-[40px] justify-center items-center md:items-start">
           {/* Card 1: Customizable personalities */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full md:w-1/3">
             <div
-              className="overflow-hidden rounded-[20px] flex flex-col justify-between"
-              style={{ backgroundColor: "#f8f8f8", width: "457px", height: "397px", padding: "0" }}
+              className="overflow-hidden rounded-[20px] flex flex-col justify-between w-full"
+              style={{ backgroundColor: "#f8f8f8", height: "397px", padding: "0" }}
             >
               {/* Personality options */}
-              <div className="flex flex-col gap-0 p-6 h-full justify-center">
+              <div className="flex flex-col gap-5 p-6 h-full justify-center">
                 {/* Energetic option */}
                 <div
-                  className="flex items-center gap-[22px] px-[36px] py-[30px] rounded-[10px] border mb-2"
+                  className="flex items-center gap-[22px] px-[36px] py-[30px] rounded-[10px] border"
                   style={{ borderColor: "#e1e1e1", backgroundColor: "white" }}
                 >
                   <img src={lightningIconSrc} alt="" className="w-[24px] h-[24px] shrink-0" />
@@ -41,7 +41,7 @@ export default function FeaturesGrid() {
                 </div>
                 {/* Calm option - selected/highlighted */}
                 <div
-                  className="flex items-center gap-[22px] px-[36px] py-[30px] rounded-[10px] border mb-2"
+                  className="flex items-center gap-[22px] px-[36px] py-[30px] rounded-[10px] border"
                   style={{ borderColor: "#8cc3b8", backgroundColor: "#f8fdfc" }}
                 >
                   <img src={leafIconSrc} alt="" className="w-[24px] h-[24px] shrink-0" />
@@ -80,15 +80,15 @@ export default function FeaturesGrid() {
           </div>
 
           {/* Card 2: Mindfulness & reflection */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full md:w-1/3">
             <div
-              className="overflow-hidden rounded-[20px] relative"
-              style={{ backgroundColor: "#f8f8f8", width: "457px", height: "397px" }}
+              className="overflow-hidden rounded-[20px] relative w-full"
+              style={{ backgroundColor: "#f8f8f8", height: "397px" }}
             >
               {/* Daily check-in card mockup */}
               <div
-                className="absolute bg-white border border-[#e1e1e1] rounded-[10px] shadow-sm p-6 flex flex-col gap-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ width: "370px" }}
+                className="absolute bg-white border border-[#e1e1e1] rounded-[10px] shadow-sm p-6 flex flex-col gap-4 left-1/2 -translate-x-1/2"
+                style={{ width: "calc(100% - 40px)", maxWidth: "370px", top: "40px" }}
               >
                 <div className="flex items-center justify-between">
                   <span className="font-normal text-black" style={{ fontSize: "17px", letterSpacing: "-0.51px" }}>
@@ -122,10 +122,10 @@ export default function FeaturesGrid() {
           </div>
 
           {/* Card 3: Always-on emotional support */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full md:w-1/3">
             <div
-              className="overflow-hidden rounded-[20px] relative"
-              style={{ backgroundColor: "#f8f8f8", width: "457px", height: "397px" }}
+              className="overflow-hidden rounded-[20px] relative w-full"
+              style={{ backgroundColor: "#f8f8f8", height: "397px" }}
             >
               {/* Chat interface mockup */}
               <div

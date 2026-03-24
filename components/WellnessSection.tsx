@@ -15,8 +15,8 @@ const rockerIconSrc = "https://www.figma.com/api/mcp/asset/df7d7d37-041e-4e71-b9
 
 function SpecItem({ icon, label }: { icon: string; label: string }) {
   return (
-    <div className="flex items-start gap-[13px]">
-      <img src={icon} alt="" className="w-[25px] h-[25px] shrink-0 mt-[1px]" />
+    <div className="flex items-start gap-[13px] self-start">
+      <img src={icon} alt="" className="w-[25px] h-[25px] shrink-0 mt-[1px] object-contain" />
       <p
         className="font-normal leading-[1.55]"
         style={{ fontSize: "13.33px", color: "rgba(0,0,0,0.8)", letterSpacing: "-0.13px" }}
@@ -67,7 +67,7 @@ export default function WellnessSection() {
   return (
     <section id="about" className="bg-white overflow-hidden">
       {/* Centered heading + description */}
-      <div className="pt-10 px-8 text-center">
+      <div className="pt-6 md:pt-10 px-8 text-center">
         <h2
           className="font-normal text-black leading-[0.95] mx-auto"
           style={{ fontSize: "40px", letterSpacing: "-1.2px", maxWidth: "630px" }}
@@ -89,13 +89,13 @@ export default function WellnessSection() {
       </div>
 
       {/* Product showcase: left specs | robot | right specs */}
-      <div className="relative mt-12">
+      <div className="relative mt-4">
         {/* #f8f8f8 strip covering the lower portion */}
         <div className="absolute bottom-0 inset-x-0 h-[260px] bg-[#f8f8f8]" />
 
-        <div className="relative max-w-5xl mx-auto px-8 flex items-end justify-between gap-6">
-          {/* Left specs */}
-          <div className="flex flex-col gap-[22px] w-[200px] pb-[240px]">
+        <div className="relative max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center md:items-end justify-center gap-[50px]">
+          {/* Left specs — desktop only */}
+          <div className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
             <SpecItem icon={batteryIconSrc} label="500mAh battery" />
             <SpecItem icon={chargingIconSrc} label="Type-C Charging" />
             <SpecItem
@@ -108,7 +108,7 @@ export default function WellnessSection() {
               as the original device.png (2854×3466) reference canvas.
               Container uses device.png aspect ratio so both layers align correctly. */}
           <div
-            className="relative z-10 flex-shrink-0 w-[520px]"
+            className="relative z-10 flex-shrink-0 w-[420px] md:w-[520px]"
             style={{ aspectRatio: "2854 / 3466" }}
           >
             {/* Leaf: same canvas width as device.png, but only 2036px wide →
@@ -148,13 +148,24 @@ export default function WellnessSection() {
             />
           </div>
 
-          {/* Right specs */}
-          <div className="flex flex-col gap-[22px] w-[200px] pb-[240px]">
+          {/* Right specs — desktop only */}
+          <div className="hidden md:flex flex-col gap-[22px] w-[200px] pb-[240px]">
             <SpecItem icon={oledIconSrc} label="1.3–1.5 inch low-power OLED (240 × 240)" />
             <SpecItem icon={summonIconSrc} label="Summon button" />
             <SpecItem icon={micIconSrc} label="2 MEMS mic array" />
             <SpecItem icon={speakerIconSrc} label="3W loudspeaker" />
           </div>
+        </div>
+
+        {/* Mobile specs — below device */}
+        <div className="md:hidden grid grid-cols-2 gap-x-8 gap-y-3 max-w-md mx-auto px-8 mt-4 pb-4 relative z-10">
+          <SpecItem icon={oledIconSrc} label="1.3–1.5 inch low-power OLED (240 × 240)" />
+          <SpecItem icon={batteryIconSrc} label="500mAh battery" />
+          <SpecItem icon={summonIconSrc} label="Summon button" />
+          <SpecItem icon={chargingIconSrc} label="Type-C Charging" />
+          <SpecItem icon={micIconSrc} label="2 MEMS mic array" />
+          <SpecItem icon={rockerIconSrc} label="Side rocker – volume / long-press skip/recall last response" />
+          <SpecItem icon={speakerIconSrc} label="3W loudspeaker" />
         </div>
       </div>
     </section>

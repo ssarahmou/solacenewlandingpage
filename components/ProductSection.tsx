@@ -39,7 +39,7 @@ export default function ProductSection() {
   }, []);
 
   return (
-    <section className="bg-white py-24 px-8">
+    <section className="bg-white py-10 md:py-24 px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
         {/* Left: product image */}
         <div
@@ -55,6 +55,26 @@ export default function ProductSection() {
 
         {/* Right: product details */}
         <div className="flex flex-col gap-6 pt-4">
+          {/* Product photo thumbnails — shows first on mobile via order */}
+          <div className="flex flex-wrap gap-3 order-first md:order-none md:hidden">
+            {productImages.map((src, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveImage(i)}
+                className="overflow-hidden rounded-[10px] transition-all duration-150"
+                style={{
+                  width: "70px",
+                  height: "80px",
+                  backgroundColor: "#f8f8f8",
+                  outline: activeImage === i ? "2px solid black" : "2px solid transparent",
+                  outlineOffset: "-2px",
+                }}
+              >
+                <img src={src} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+
           {/* Title + PRESALE badge */}
           <div className="flex items-center gap-3">
             <h2 className="font-normal text-black" style={{ fontSize: "30px", letterSpacing: "-0.3px" }}>
@@ -101,7 +121,7 @@ export default function ProductSection() {
           </p>
 
           {/* Specs */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
             <div className="flex flex-col gap-3">
               {specsLeft.map((s) => (
                 <div key={s.label} className="flex items-start gap-3">
@@ -130,8 +150,8 @@ export default function ProductSection() {
             </div>
           </div>
 
-          {/* Product photo thumbnails */}
-          <div className="flex gap-3">
+          {/* Product photo thumbnails — desktop only */}
+          <div className="hidden md:flex flex-wrap gap-3">
             {productImages.map((src, i) => (
               <button
                 key={i}

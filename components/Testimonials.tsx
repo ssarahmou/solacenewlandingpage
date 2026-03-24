@@ -2,12 +2,16 @@
 
 import { useRef } from "react";
 
-const videos = [
-  { id: 1, label: "[ VIDEO PLACEHOLDER 1 ]", bg: "bg-gray-800" },
-  { id: 2, label: "[ VIDEO PLACEHOLDER 2 ]", bg: "bg-gray-700" },
-  { id: 3, label: "[ VIDEO PLACEHOLDER 3 ]", bg: "bg-gray-600" },
-  { id: 4, label: "[ VIDEO PLACEHOLDER 4 ]", bg: "bg-gray-700" },
-  { id: 5, label: "[ VIDEO PLACEHOLDER 5 ]", bg: "bg-gray-800" },
+const bgImageSrc = "https://www.figma.com/api/mcp/asset/c1e374a9-e328-424a-bc64-7fa0499c51ed";
+const arrowNextSrc = "https://www.figma.com/api/mcp/asset/43a7963a-1a72-46d6-8fe3-cc7cfb8d5f4b";
+const arrowPrevSrc = "https://www.figma.com/api/mcp/asset/baeeefcd-2b57-4236-808e-d0917593f465";
+
+const videoImages = [
+  "https://www.figma.com/api/mcp/asset/dd864c36-fe34-41c6-b357-59eded9fc03f",
+  "https://www.figma.com/api/mcp/asset/6ea9714a-6ed8-45f5-b56c-8f5e76843f9e",
+  "https://www.figma.com/api/mcp/asset/795fb231-57b4-445d-9226-27cabf16d21f",
+  "https://www.figma.com/api/mcp/asset/a87a1c53-5a70-4c64-b7a2-c45c8cafb915",
+  "https://www.figma.com/api/mcp/asset/dd864c36-fe34-41c6-b357-59eded9fc03f",
 ];
 
 export default function Testimonials() {
@@ -15,76 +19,58 @@ export default function Testimonials() {
 
   function scroll(dir: "left" | "right") {
     if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir === "right" ? 260 : -260, behavior: "smooth" });
+    scrollRef.current.scrollBy({ left: dir === "right" ? 300 : -300, behavior: "smooth" });
   }
 
   return (
-    <section className="relative overflow-hidden py-20 px-8" style={{ background: "linear-gradient(180deg, #a8c8e8 0%, #7bafd4 40%, #5a9abf 70%, #c8dba8 100%)" }}>
-      {/* Sky landscape SVG behind */}
+    <section className="relative overflow-hidden py-20 px-8 bg-[#171717]">
+      {/* Background landscape image */}
       <div className="absolute inset-0 pointer-events-none">
-        <SkyLandscapeSVG />
+        <img src={bgImageSrc} alt="" className="w-full h-full object-cover opacity-60" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Header row */}
         <div className="flex items-start justify-between mb-10">
-          <h2 className="text-3xl md:text-4xl font-semibold text-white leading-snug max-w-xs">
+          <h2
+            className="font-normal text-white leading-[0.95]"
+            style={{ fontSize: "40px", letterSpacing: "-1.2px", maxWidth: "394px" }}
+          >
             See what real people say about Seed.
           </h2>
           <div className="flex gap-3 mt-2">
             <button
               onClick={() => scroll("left")}
-              className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors backdrop-blur-sm"
+              className="w-10 h-10 rounded-[5px] bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
             >
-              ←
+              <img src={arrowPrevSrc} alt="Previous" className="w-4 h-4 -scale-x-100" />
             </button>
             <button
               onClick={() => scroll("right")}
-              className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center transition-colors backdrop-blur-sm"
+              className="w-10 h-10 rounded-[5px] bg-white/90 flex items-center justify-center hover:bg-white transition-colors"
             >
-              →
+              <img src={arrowNextSrc} alt="Next" className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Scrollable video row */}
+        {/* Scrollable video row — portrait tiles */}
         <div
           ref={scrollRef}
-          className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide"
+          className="flex gap-4 overflow-x-auto pb-2"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {videos.map((v) => (
+          {videoImages.map((src, i) => (
             <div
-              key={v.id}
-              className={`flex-shrink-0 w-48 h-72 rounded-2xl ${v.bg} flex items-center justify-center`}
+              key={i}
+              className="flex-shrink-0 rounded-[8px] overflow-hidden bg-[#171717]"
+              style={{ width: "280px", height: "498px" }}
             >
-              <span className="text-gray-400 text-xs text-center px-3 font-mono">{v.label}</span>
+              <img src={src} alt="" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function SkyLandscapeSVG() {
-  return (
-    <svg
-      viewBox="0 0 1440 500"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-      preserveAspectRatio="xMidYMax slice"
-    >
-      {/* Clouds */}
-      <ellipse cx="200" cy="80" rx="90" ry="30" fill="white" fillOpacity="0.3" />
-      <ellipse cx="270" cy="68" rx="60" ry="22" fill="white" fillOpacity="0.25" />
-      <ellipse cx="900" cy="60" rx="110" ry="28" fill="white" fillOpacity="0.2" />
-      <ellipse cx="980" cy="50" rx="70" ry="20" fill="white" fillOpacity="0.18" />
-      {/* Rolling green hills at bottom */}
-      <ellipse cx="300" cy="560" rx="500" ry="200" fill="#72b354" fillOpacity="0.8" />
-      <ellipse cx="1100" cy="550" rx="600" ry="220" fill="#5da040" fillOpacity="0.7" />
-      <ellipse cx="750" cy="580" rx="700" ry="230" fill="#4a8f2e" fillOpacity="0.6" />
-    </svg>
   );
 }
