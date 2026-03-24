@@ -7,17 +7,33 @@ const seedLogoSrc = "https://www.figma.com/api/mcp/asset/0917fd9f-6f87-47c8-a0ca
 export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const hero = document.querySelector("section");
     if (!hero) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => setIsDark(entry.isIntersecting),
       { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
     );
     observer.observe(hero);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      // always show at the very top; hide when scrolling down, show when scrolling up
+      if (y < 10) {
+        setVisible(true);
+      } else {
+        setVisible(y < lastY);
+      }
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const linkColor = isDark && !menuOpen ? "white" : "black";
@@ -27,8 +43,11 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50"
       style={{
         backgroundColor: menuOpen ? "white" : "transparent",
-        // instant white on open, fade back to transparent on close
-        transition: menuOpen ? "none" : "background-color 200ms ease",
+        transition: menuOpen
+          ? "opacity 300ms ease"
+          : "background-color 200ms ease, opacity 300ms ease",
+        opacity: visible || menuOpen ? 1 : 0,
+        pointerEvents: visible || menuOpen ? "auto" : "none",
       }}
     >
       <div className="flex items-center justify-between px-6 md:px-[84px] py-6 md:py-[57px]">
