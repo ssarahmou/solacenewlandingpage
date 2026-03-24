@@ -7,8 +7,6 @@ const seedLogoSrc = "https://www.figma.com/api/mcp/asset/0917fd9f-6f87-47c8-a0ca
 export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [visible, setVisible] = useState(true);
-
   useEffect(() => {
     const hero = document.querySelector("section");
     if (!hero) return;
@@ -20,22 +18,6 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    let lastY = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      // always show at the very top; hide when scrolling down, show when scrolling up
-      if (y < 10) {
-        setVisible(true);
-      } else {
-        setVisible(y < lastY);
-      }
-      lastY = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   const linkColor = isDark && !menuOpen ? "white" : "black";
 
   return (
@@ -43,11 +25,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50"
       style={{
         backgroundColor: menuOpen ? "white" : "transparent",
-        transition: menuOpen
-          ? "opacity 300ms ease"
-          : "background-color 200ms ease, opacity 300ms ease",
-        opacity: visible || menuOpen ? 1 : 0,
-        pointerEvents: visible || menuOpen ? "auto" : "none",
+        transition: menuOpen ? "none" : "background-color 200ms ease",
       }}
     >
       <div className="flex items-center justify-between px-6 md:px-[84px] py-6 md:py-[57px]">
@@ -63,6 +41,13 @@ export default function Navbar() {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-[35px]">
             <a
+              href="/"
+              className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
+              style={{ color: linkColor }}
+            >
+              Home
+            </a>
+            <a
               href="/#features"
               className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
               style={{ color: linkColor }}
@@ -75,6 +60,13 @@ export default function Navbar() {
               style={{ color: linkColor }}
             >
               About
+            </a>
+            <a
+              href="/#faq"
+              className="text-[15px] tracking-[-0.45px] hover:opacity-70 transition-all duration-300"
+              style={{ color: linkColor }}
+            >
+              FAQ
             </a>
             <a
               href="mailto:kellyzeng@solacelaunch.org"
@@ -133,12 +125,19 @@ export default function Navbar() {
       <div
         className="md:hidden bg-white px-6 flex flex-col gap-4 overflow-hidden"
         style={{
-          maxHeight: menuOpen ? "300px" : "0px",
+          maxHeight: menuOpen ? "380px" : "0px",
           opacity: menuOpen ? 1 : 0,
           paddingBottom: menuOpen ? "24px" : "0px",
           transition: "max-height 300ms ease, opacity 250ms ease, padding-bottom 300ms ease",
         }}
       >
+          <a
+            href="/"
+            onClick={() => setMenuOpen(false)}
+            className="text-[15px] tracking-[-0.45px] text-black"
+          >
+            Home
+          </a>
           <a
             href="/#features"
             onClick={() => setMenuOpen(false)}
@@ -152,6 +151,13 @@ export default function Navbar() {
             className="text-[15px] tracking-[-0.45px] text-black"
           >
             About
+          </a>
+          <a
+            href="/#faq"
+            onClick={() => setMenuOpen(false)}
+            className="text-[15px] tracking-[-0.45px] text-black"
+          >
+            FAQ
           </a>
           <a
             href="mailto:kellyzeng@solacelaunch.org"
