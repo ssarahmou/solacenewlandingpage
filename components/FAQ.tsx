@@ -45,7 +45,8 @@ export default function FAQ() {
             <br />
             Connect with our team.
           </p>
-          <button
+          <a
+            href="mailto:kellyzeng@solacelaunch.com"
             className="self-start text-white font-normal rounded-[8px] hover:opacity-90 transition-opacity flex items-center justify-center"
             style={{
               backgroundColor: "#313131",
@@ -57,7 +58,7 @@ export default function FAQ() {
             }}
           >
             Contact us
-          </button>
+          </a>
         </div>
         </FadeIn>
 

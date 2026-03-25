@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { STRIPE_CHECKOUT_URL } from "@/lib/checkout";
 
 const seedLogoSrc = "/1.png";
 
@@ -80,7 +81,7 @@ export default function Navbar() {
 
         {/* Desktop buy now */}
         <a
-          href="https://buy.stripe.com/7sY14gbMK4VZb3v9lOa3u00"
+          href={STRIPE_CHECKOUT_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:flex text-[14px] tracking-[-0.42px] px-[20px] h-[40px] rounded-[10px] transition-all duration-300 items-center justify-center"
@@ -167,7 +168,7 @@ export default function Navbar() {
             Contact
           </a>
           <a
-            href="https://buy.stripe.com/7sY14gbMK4VZb3v9lOa3u00"
+            href={STRIPE_CHECKOUT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[14px] tracking-[-0.42px] px-[20px] h-[40px] rounded-[10px] flex items-center justify-center text-white"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { STRIPE_CHECKOUT_URL } from "@/lib/checkout";
 import FadeIn from "./FadeIn";
 
 const productImages = [
@@ -231,7 +232,10 @@ export default function ProductSection() {
                 </div>
               )}
             </div>
-            <button
+            <a
+              href={STRIPE_CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex-1 text-white font-normal rounded-[10px] hover:opacity-90 transition-opacity flex items-center justify-center"
               style={{
                 backgroundColor: "#313131",
@@ -241,7 +245,7 @@ export default function ProductSection() {
               }}
             >
               ${(60 * qty).toFixed(2)} — Checkout
-            </button>
+            </a>
           </div>
         </div>
         </FadeIn>

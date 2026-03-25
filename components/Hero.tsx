@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { STRIPE_CHECKOUT_URL } from "@/lib/checkout";
 
 const shopIconSrc = "/2.png";
 
@@ -49,7 +50,10 @@ export default function Hero() {
           With Seed, it&apos;s always that deep with us.
         </p>
 
-        <button
+        <a
+          href={STRIPE_CHECKOUT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-2 flex items-center gap-[18px] bg-white text-black font-normal rounded-[10px] hover:bg-gray-100 transition-colors"
           style={{
             fontSize: "20px",
@@ -62,7 +66,7 @@ export default function Hero() {
         >
           <img src={shopIconSrc} alt="" className="h-[23px] w-auto" />
           Shop now
-        </button>
+        </a>
       </div>
     </section>
   );
