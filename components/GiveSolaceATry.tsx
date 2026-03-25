@@ -21,7 +21,7 @@ export default function GiveSolaceATry() {
           className="relative flex-shrink-0 w-full md:w-[58%]"
           style={{ height: 480 }}
         >
-          {/* phone1 — dashboard, far left, -15° tilt, bleeds left + bottom */}
+          {/* phone1 — dashboard, left, -15°, bleeds left edge */}
           <img
             src={phone1Src}
             alt="Solace app dashboard"
@@ -30,26 +30,26 @@ export default function GiveSolaceATry() {
             style={{
               width: 380,
               top: -60,
-              left: -50,
+              left: -40,
               transform: "rotate(-15deg)",
               transformOrigin: "top center",
               filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.20))",
               zIndex: 1,
             }}
           />
-          {/* phone2 — character, centre, +15° tilt, bleeds top + bottom */}
+          {/* phone2 — character, overlapping phone1, same -15°, bleeds top heavily */}
           <img
             src={phone2Src}
             alt="Solace app character"
             draggable={false}
             className="absolute select-none pointer-events-none"
             style={{
-              width: 360,
-              top: -190,
-              left: 260,
-              transform: "rotate(15deg)",
+              width: 380,
+              top: -200,
+              left: 200,
+              transform: "rotate(-15deg)",
               transformOrigin: "top center",
-              filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.24))",
+              filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.28))",
               zIndex: 2,
             }}
           />
