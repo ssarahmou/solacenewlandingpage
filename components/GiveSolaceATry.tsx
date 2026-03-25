@@ -2,9 +2,9 @@
 
 import FadeIn from "./FadeIn";
 
-// User-uploaded images (already include the iPhone frame/bezel)
-const phone1Src = "/phone1.png"; // wellness dashboard — back/left phone
-const phone2Src = "/phone2.png"; // character view  — front/right phone
+/** Figma 3642:4724 — composite iPhone mockups (single export). */
+const mockupsSrc = "/givesolaceatry.png";
+
 const appIconSrc = "/anecdote.png";
 
 const APP_STORE_URL =
@@ -13,60 +13,27 @@ const APP_STORE_URL =
 export default function GiveSolaceATry() {
   return (
     <section className="relative bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
-
-        {/* ── LEFT: two angled phone mockups ───────────────────── */}
-        {/* Section-level overflow-hidden clips phones at top/bottom/left */}
-        <div
-          className="relative flex-shrink-0 w-full md:w-[58%]"
-          style={{ height: 480 }}
-        >
-          {/* phone1 — dashboard, left, -15°, bleeds left edge */}
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch">
+        {/* LEFT: Figma mockup PNG (background comes from the asset, not CSS) */}
+        <div className="relative flex-shrink-0 w-full md:w-[58%] bg-white flex items-center justify-center md:min-h-[472px] py-8 md:py-0">
           <img
-            src={phone1Src}
-            alt="Solace app dashboard"
+            src={mockupsSrc}
+            alt="Solace app wellness dashboard and character on iPhone"
             draggable={false}
-            className="absolute select-none pointer-events-none"
-            style={{
-              width: 380,
-              top: -60,
-              left: -40,
-              transform: "rotate(-15deg)",
-              transformOrigin: "top center",
-              filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.20))",
-              zIndex: 1,
-            }}
-          />
-          {/* phone2 — character, overlapping phone1, same -15°, bleeds top heavily */}
-          <img
-            src={phone2Src}
-            alt="Solace app character"
-            draggable={false}
-            className="absolute select-none pointer-events-none"
-            style={{
-              width: 380,
-              top: -200,
-              left: 200,
-              transform: "rotate(-15deg)",
-              transformOrigin: "top center",
-              filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.28))",
-              zIndex: 2,
-            }}
+            className="w-full max-w-[960px] h-auto object-contain select-none pointer-events-none"
           />
         </div>
 
-        {/* ── RIGHT: icon + heading + CTA ──────────────────────── */}
+        {/* RIGHT: icon + heading + CTA */}
         <FadeIn
           delay={100}
           direction="left"
-          className="flex-1 flex flex-col items-start py-16 md:py-20 px-8 md:pl-4 md:pr-16"
+          className="flex-1 flex flex-col items-start py-16 md:py-20 px-8 md:pl-4 md:pr-16 bg-white"
         >
-          {/* App icon */}
           <img
             src={appIconSrc}
             alt="Solace app icon"
-            className="w-[64px] h-[64px] rounded-[14px] mb-6"
-            style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.10)" }}
+            className="w-[76px] h-[76px] rounded-[16px] mb-6 cursor-default transition-transform duration-300 ease-out motion-safe:hover:rotate-[10deg]"
           />
 
           <h2
@@ -102,10 +69,9 @@ export default function GiveSolaceATry() {
               height: "46px",
             }}
           >
-            {/* Phone icon */}
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="5" y="1" width="14" height="22" rx="3" stroke="white" strokeWidth="1.8"/>
-              <circle cx="12" cy="19" r="1" fill="white"/>
+              <rect x="5" y="1" width="14" height="22" rx="3" stroke="white" strokeWidth="1.8" />
+              <circle cx="12" cy="19" r="1" fill="white" />
             </svg>
             Download Solace
           </a>
