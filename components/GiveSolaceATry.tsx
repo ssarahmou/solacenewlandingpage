@@ -16,39 +16,40 @@ export default function GiveSolaceATry() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
 
         {/* ── LEFT: two angled phone mockups ───────────────────── */}
+        {/* Section-level overflow-hidden clips phones at top/bottom/left */}
         <div
           className="relative flex-shrink-0 w-full md:w-[58%]"
-          style={{ height: 500 }}
+          style={{ height: 480 }}
         >
-          {/* Back phone — dashboard, left, rotated slightly left */}
+          {/* phone1 — dashboard, far left, -15° tilt, bleeds left + bottom */}
           <img
             src={phone1Src}
             alt="Solace app dashboard"
             draggable={false}
             className="absolute select-none pointer-events-none"
             style={{
-              width: 250,
-              bottom: -20,
-              left: "4%",
-              transform: "rotate(-8deg)",
-              transformOrigin: "bottom center",
-              filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.18))",
+              width: 380,
+              top: -60,
+              left: -50,
+              transform: "rotate(-15deg)",
+              transformOrigin: "top center",
+              filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.20))",
               zIndex: 1,
             }}
           />
-          {/* Front phone — character, center-right, slight tilt */}
+          {/* phone2 — character, centre, +15° tilt, bleeds top + bottom */}
           <img
             src={phone2Src}
             alt="Solace app character"
             draggable={false}
             className="absolute select-none pointer-events-none"
             style={{
-              width: 270,
-              bottom: -20,
-              left: "34%",
-              transform: "rotate(6deg)",
-              transformOrigin: "bottom center",
-              filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.22))",
+              width: 360,
+              top: -190,
+              left: 260,
+              transform: "rotate(15deg)",
+              transformOrigin: "top center",
+              filter: "drop-shadow(0 40px 70px rgba(0,0,0,0.24))",
               zIndex: 2,
             }}
           />
