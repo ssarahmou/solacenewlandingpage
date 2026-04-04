@@ -19,7 +19,15 @@ export default function Hero() {
     <section className="group relative h-screen bg-white flex flex-col items-center overflow-hidden">
       {/* Full-bleed video background */}
       <div className="absolute inset-0 pointer-events-none">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-center">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/hero-bg.png"
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
           <source src="/hero-bg.mov" type="video/quicktime" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60" />
