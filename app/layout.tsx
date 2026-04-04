@@ -12,6 +12,7 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   title: "Solace Seed — Your Personal AI Companion",
   description: "A wellness companion designed for emotional presence, every day.",
+  icons: { icon: "/icon.png", shortcut: "/icon.png" },
 };
 
 export default function RootLayout({
@@ -21,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${instrumentSans.variable} antialiased`}>
-      <head>
-        <link rel="shortcut icon" type="image/png" href="/icon.png" />
-      </head>
+
       <body className="min-h-full" style={{ fontFamily: "var(--font-instrument-sans), sans-serif" }}>
         {children}
         {process.env.NODE_ENV === "development" && <DevTools />}
