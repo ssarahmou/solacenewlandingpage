@@ -21,6 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${instrumentSans.variable} antialiased`}>
+      <head>
+        <link rel="shortcut icon" type="image/png" href="/icon.png" />
+      </head>
       <body className="min-h-full" style={{ fontFamily: "var(--font-instrument-sans), sans-serif" }}>
         {children}
         {process.env.NODE_ENV === "development" && <DevTools />}
