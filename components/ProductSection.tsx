@@ -13,6 +13,11 @@ const productImages = [
 
 const specIcon = (filename: string) => `/${encodeURIComponent(filename)}`;
 
+/** Winking Seed — shown on hover over main photo when Solace Seed is selected. */
+const seedHoverGifSrc = specIcon(
+  "u1666638962_httpss.mj.runIJ9xT_ib_mk_face_winking_--ar_223256_3a39fe55-1606-46c8-ab32-0318c28ef97b_3.gif"
+);
+
 const specsLeft = [
   { iconSrc: specIcon("television 1, tv, monitor, video, screen, display.png"), label: "1.3–1.5 inch low-power OLED (240 × 240)" },
   { iconSrc: specIcon("heart, like, health, life, favorite.png"), label: "Summon button" },
@@ -30,6 +35,8 @@ export default function ProductSection() {
   const [qty, setQty] = useState(1);
   const [qtyOpen, setQtyOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
+  /** Bump on each hover enter so the Seed GIF remounts and restarts from frame 0. */
+  const [seedGifKey, setSeedGifKey] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -48,14 +55,34 @@ export default function ProductSection() {
         {/* Left: product image */}
         <FadeIn direction="right">
           <div
-            className="overflow-hidden rounded-[8px]"
+            className="group relative overflow-hidden rounded-[8px]"
             style={{ backgroundColor: "#f8f8f8", minHeight: "400px" }}
+            onMouseEnter={() => {
+              if (activeImage === 0) setSeedGifKey((k) => k + 1);
+            }}
           >
-            <img
-              src={productImages[activeImage]}
-              alt="Solace Seed"
-              className="w-full h-full object-cover transition-opacity duration-200"
-            />
+            {activeImage === 0 ? (
+              <>
+                <img
+                  src={productImages[0]}
+                  alt="Solace Seed"
+                  className="relative z-0 w-full h-full min-h-[400px] object-cover transition-opacity duration-200"
+                />
+                <img
+                  key={seedGifKey}
+                  src={seedHoverGifSrc}
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-10 h-full w-full object-cover opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100 motion-reduce:group-hover:opacity-0"
+                />
+              </>
+            ) : (
+              <img
+                src={productImages[activeImage]}
+                alt="Solace Seed"
+                className="w-full h-full min-h-[400px] object-cover transition-opacity duration-200"
+              />
+            )}
           </div>
         </FadeIn>
 
