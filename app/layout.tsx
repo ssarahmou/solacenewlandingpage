@@ -12,7 +12,7 @@ const instrumentSans = Instrument_Sans({
 export const metadata: Metadata = {
   title: "Solace Seed — Your Personal AI Companion",
   description: "A wellness companion designed for emotional presence, every day.",
-  icons: { icon: "/icon.png", shortcut: "/icon.png" },
+  icons: { icon: "/favicon.png", shortcut: "/favicon.png", apple: "/favicon.png" },
 };
 
 export default function RootLayout({
