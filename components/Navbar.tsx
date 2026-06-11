@@ -5,10 +5,15 @@ import { STRIPE_CHECKOUT_URL } from "@/lib/checkout";
 
 const seedLogoSrc = "/1.png";
 
-export default function Navbar() {
-  const [isDark, setIsDark] = useState(true);
+type NavbarProps = {
+  theme?: "auto" | "light";
+};
+
+export default function Navbar({ theme = "auto" }: NavbarProps) {
+  const [isDark, setIsDark] = useState(theme === "auto");
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
+    if (theme !== "auto") return;
     const hero = document.querySelector("section");
     if (!hero) return;
     const observer = new IntersectionObserver(
@@ -17,9 +22,10 @@ export default function Navbar() {
     );
     observer.observe(hero);
     return () => observer.disconnect();
-  }, []);
+  }, [theme]);
 
-  const linkColor = isDark && !menuOpen ? "white" : "black";
+  const useDarkStyle = theme === "auto" && isDark && !menuOpen;
+  const linkColor = useDarkStyle ? "white" : "black";
 
   return (
     <nav
@@ -36,7 +42,7 @@ export default function Navbar() {
               src={seedLogoSrc}
               alt="Solace"
               className="h-[23px] w-auto"
-              style={{ filter: isDark && !menuOpen ? "none" : "invert(1)", transition: "filter 200ms ease" }}
+              style={{ filter: useDarkStyle ? "none" : "invert(1)", transition: "filter 200ms ease" }}
             />
           </a>
           {/* Desktop links */}
@@ -86,8 +92,8 @@ export default function Navbar() {
           rel="noopener noreferrer"
           className="hidden md:flex text-[14px] tracking-[-0.42px] px-[20px] h-[40px] rounded-[10px] transition-all duration-300 items-center justify-center"
           style={{
-            backgroundColor: isDark ? "white" : "black",
-            color: isDark ? "black" : "white",
+            backgroundColor: useDarkStyle ? "white" : "black",
+            color: useDarkStyle ? "black" : "white",
           }}
         >
           Buy now
@@ -101,21 +107,21 @@ export default function Navbar() {
           <span
             className="block w-5 h-[2px] rounded transition-all duration-200"
             style={{
-              backgroundColor: isDark && !menuOpen ? "white" : "black",
+              backgroundColor: useDarkStyle ? "white" : "black",
               transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
             }}
           />
           <span
             className="block w-5 h-[2px] rounded transition-all duration-200"
             style={{
-              backgroundColor: isDark && !menuOpen ? "white" : "black",
+              backgroundColor: useDarkStyle ? "white" : "black",
               opacity: menuOpen ? 0 : 1,
             }}
           />
           <span
             className="block w-5 h-[2px] rounded transition-all duration-200"
             style={{
-              backgroundColor: isDark && !menuOpen ? "white" : "black",
+              backgroundColor: useDarkStyle ? "white" : "black",
               transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
             }}
           />
