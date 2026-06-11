@@ -84,18 +84,25 @@ export default function Footer() {
             Solace Launch @ 2025
           </p>
           <a
-            href="mailto:kellyzeng@solacelaunch.org"
+            href="mailto:admin@solacelaunch.org"
             className="font-normal text-black hover:opacity-60 transition-opacity"
             style={{ fontSize: "14px", letterSpacing: "-0.14px" }}
           >
             Contact
           </a>
           <a
-            href="#"
+            href="/privacy-policy"
             className="font-normal text-black hover:opacity-60 transition-opacity"
             style={{ fontSize: "14px", letterSpacing: "-0.14px" }}
           >
             Privacy Policy
+          </a>
+          <a
+            href="/terms-of-use"
+            className="font-normal text-black hover:opacity-60 transition-opacity"
+            style={{ fontSize: "14px", letterSpacing: "-0.14px" }}
+          >
+            Terms of Use
           </a>
         </div>
 
