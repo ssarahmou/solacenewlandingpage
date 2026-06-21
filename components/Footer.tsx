@@ -104,6 +104,13 @@ export default function Footer() {
           >
             Terms of Use
           </a>
+          <a
+            href="/delete-account"
+            className="font-normal text-black hover:opacity-60 transition-opacity"
+            style={{ fontSize: "14px", letterSpacing: "-0.14px" }}
+          >
+            Delete Account
+          </a>
         </div>
 
         {/* Right: email signup */}
