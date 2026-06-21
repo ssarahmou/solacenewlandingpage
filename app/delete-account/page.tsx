@@ -24,10 +24,10 @@ const sections = [
           <>
             Email{" "}
             <a
-              href="mailto:support@solacelaunch.com"
+              href="mailto:admin@solacelaunch.org"
               className="text-black underline hover:opacity-60 transition-opacity"
             >
-              support@solacelaunch.com
+              admin@solacelaunch.org
             </a>{" "}
             with the subject line &quot;Delete Account Request&quot; and include the email address associated with
             your Solace account.
