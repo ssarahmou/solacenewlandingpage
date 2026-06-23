@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import DevTools from "@/components/DevTools";
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="min-h-full" style={{ fontFamily: "var(--font-instrument-sans), sans-serif" }}>
         {children}
         {process.env.NODE_ENV === "development" && <DevTools />}
+        <Analytics />
       </body>
     </html>
   );
